@@ -18,10 +18,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * This class extends the WebSecurityConfigurerAdapter that enables both WebSecurity and HTTPSecurity to be customized.
  */
-
+/*
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)*/
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
