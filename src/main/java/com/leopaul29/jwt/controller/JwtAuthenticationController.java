@@ -2,6 +2,8 @@ package com.leopaul29.jwt.controller;
 
 import java.util.Objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +28,7 @@ import com.leopaul29.jwt.model.JwtResponse;
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
+    static final Logger logger = LogManager.getLogger(JwtAuthenticationController.class);
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -39,7 +42,7 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
-
+        logger.debug(authenticationRequest);
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = jwtInMemoryUserDetailsService
@@ -51,6 +54,8 @@ public class JwtAuthenticationController {
     }
 
     private void authenticate(String username, String password) throws Exception {
+        logger.debug(username);
+        logger.debug(password);
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);
         try {

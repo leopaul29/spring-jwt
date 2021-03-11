@@ -2,6 +2,7 @@ package com.leopaul29.jwt.config;
 
 import com.leopaul29.jwt.config2.JWTAuthenticationFilter;
 import com.leopaul29.jwt.config2.JWTAuthorizationFilter;
+import com.leopaul29.jwt.service.JwtUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,13 +17,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import static com.leopaul29.jwt.config2.SecurityConstants.SIGN_UP_URL;
 
-@EnableWebSecurity
+/*@EnableWebSecurity*/
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsServiceImpl userDetailsService;
+    private JwtUserDetailsService  userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public WebSecurity(UserDetailsServiceImpl userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurity(JwtUserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
